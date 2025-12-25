@@ -38,3 +38,8 @@ jobs:
             vuln-type: 'os,library'
             severity: 'CRITICAL,HIGH'
             ignore-unfixed: true
+        - name: scan results 
+          run: |
+           git add trivy-results.json # Or the directory path
+           git commit -m "chore(ci): /scanresults/${{ needs.build-and-push.outputs.timestamp }}" || echo "No changes to commit"
+           git push
