@@ -25,12 +25,26 @@ jobs:
             context: .
             push: true
             tags: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
+        - name: Run Trivy scan and save to file
+          run: |
+             mkdir -p count
+             trivy fs -f json -o count/trivy-results.json .
         - name: Scan Docker image for vulnerabilities
           uses: aquasecurity/trivy-action@master
           with:
             image-ref: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
             format: 'table'
-        - name: scan results 
+        - name: Configure git user
           run: |
-           git add /scan/trivy-results.json # Or the directory path
-           git commit -m "chore(ci): /scan/${{ steps.timestamp.outputs.TIMESTAMP }}" 
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        - name: scan results
+          run: |
+            git add count/trivy-results.json
+            git commit -m "chore(ci): trivy-results/${{ steps.timestamp.outputs.TIMESTAMP }}"
+        - name: Upload Trivy scan results as an artifact (optional)
+          uses: actions/upload-artifact@v4
+          with:
+           name: scan-report
+           path: count/trivy-results.json
+           retention-days: 5
