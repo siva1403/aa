@@ -30,21 +30,20 @@ jobs:
           with:
             image-ref: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
             format: 'table'
-        - name: Run Trivy scan and save to file
+        - name: Run Trivy vulnerability scanner
           run: |
-             mkdir -p count
-             trivy fs -f json -o count/trivy-results.json .    
-        - name: Configure git user
+              OUTPUT_FILE="GitHub Actions/Trivy Automation/scan-results-${DATE}.json"
+              mkdir -p "GitHub Actions/Trivy Automation"
+        - name: Verify scan results exist
           run: |
-            git config --global user.name "github-actions"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        - name: scan results
-          run: |
-            git add count/trivy-results.json
-            git commit -m "chore(ci): count/${{ steps.timestamp.outputs.TIMESTAMP }}"
-        - name: Upload Trivy scan results as an artifact (optional)
-          uses: actions/upload-artifact@v4
-          with:
-           name: scan-report
-           path: count/trivy-results.json
-           retention-days: 5
+           ls -l "GitHub Actions/Trivy Automation/"
+           git config --global user.name "GitHub Actions"
+           git config --global user.email "actions@github.com"
+           git add "GitHub Actions/Trivy Automation/scan-results-${DATE}.json"
+           git commit -m "Add Trivy scan results (${DATE})"
+           git push origin HEAD:main
+      #  - name: Commit scan results to repository
+      #    env:
+       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          
