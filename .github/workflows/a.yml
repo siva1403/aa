@@ -32,7 +32,7 @@ jobs:
             format: 'table'
         - name: Run Trivy vulnerability scanner
           run: |
-              OUTPUT_FILE="GitHub Actions/Trivy/scan-results-${DATE}-${time}.json"
+              OUTPUT_FILE="GitHub Actions/Trivy/scan-results-${{ steps.timestamp.outputs.TIMESTAMP }}.json"
               mkdir -p "GitHub Actions/Trivy"
         - name: Verify scan results exist
           run: |

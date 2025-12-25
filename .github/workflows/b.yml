@@ -13,6 +13,7 @@ jobs:
       run: |
           OUTPUT_FILE="GitHub Actions/Trivy Automation/scan-results-${DATE}.json"
           mkdir -p "GitHub Actions/Trivy Automation"
+
     - name: Verify scan results exist
       run: ls -l "GitHub Actions/Trivy Automation/"
 
