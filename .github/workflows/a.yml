@@ -25,15 +25,15 @@ jobs:
             context: .
             push: true
             tags: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
-        - name: Run Trivy scan and save to file
-          run: |
-             mkdir -p trivy-results
-             trivy fs -f json -o trivy-results/trivy-results.json .
         - name: Scan Docker image for vulnerabilities
           uses: aquasecurity/trivy-action@master
           with:
             image-ref: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
             format: 'table'
+        - name: Run Trivy scan and save to file
+          run: |
+             mkdir -p trivy-results
+             trivy fs -f json -o trivy-results/trivy-results.json .    
         - name: Configure git user
           run: |
             git config --global user.name "github-actions"
