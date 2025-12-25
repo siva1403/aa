@@ -6,4 +6,5 @@ mvn clean install
 sudo apt-get install -y docker.io
 sudo systemctl start docker
 sudo systemctl enable docker
+sudo bash
 docker build -t my-java-app .
