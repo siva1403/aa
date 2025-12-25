@@ -1,4 +1,4 @@
-FROM openjdk-21-jre-slim:latest
+FROM openjdk:21-jre-slim-buster
 WORKDIR /app
 COPY /tartget/*.jar /app/app.jar
 EXPOSE 8084
