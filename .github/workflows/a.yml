@@ -30,20 +30,23 @@ jobs:
           with:
             image-ref: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
             format: 'table'
-        - name: Run Trivy vulnerability scanner
+        - name: Scan Docker image for vulnerabilities (JSON)
+          uses: aquasecurity/trivy-action@master
+          with:
+            image-ref: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
+            format: json
+            output: "GitHub Actions/Trivy/scan-results-${{ steps.timestamp.outputs.TIMESTAMP }}.json"
+        - name: Verify scan results exist and commit
           run: |
-              OUTPUT_FILE="GitHub Actions/Trivy/scan-results-${{ steps.timestamp.outputs.TIMESTAMP }}.json"
-              mkdir -p "GitHub Actions/Trivy"
-        - name: Verify scan results exist
-          run: |
-           ls -l "GitHub Actions/Trivy/"
-           git config --global user.name "GitHub Actions"
-           git config --global user.email "actions@github.com"
-           git add "GitHub Actions/Trivy/scan-results-${{ steps.timestamp.outputs.TIMESTAMP }}.json"
-           git commit -m "Add Trivy scan results (${{ steps.timestamp.outputs.TIMESTAMP }})"
-           git push origin HEAD:main
-      #  - name: Commit scan results to repository
-      #    env:
-       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       # run: |
+            FILE="GitHub Actions/Trivy/scan-results-${{ steps.timestamp.outputs.TIMESTAMP }}.json"
+            ls -l "$(dirname "$FILE")" || true
+            if [ -f "$FILE" ]; then
+            git config --global user.name "GitHub Actions"
+            git config --global user.email "actions@github.com"
+            git add "$FILE"
+            git commit -m "Add Trivy scan results (${{ steps.timestamp.outputs.TIMESTAMP }})" || echo "No changes to commit"
+            git push origin HEAD:main
+              else
+             echo "Scan results not found: $FILE"
+             fi
           
