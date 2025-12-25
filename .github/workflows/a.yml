@@ -1,5 +1,5 @@
 name: Build a docker image and push to Docker Hub
-on: [push]
+on: [workflows]
 jobs:
     build-and-push:
         runs-on: ubuntu-latest

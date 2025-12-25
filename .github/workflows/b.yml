@@ -1,0 +1,26 @@
+name: Create folder on push
+
+on: [workflows]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4 # Use the checkout action to access the repo files
+
+    - name: Create directory and add a file
+      run: |
+        mkdir -p results_folder
+        echo "This is a result file created at $(date)" > results_folder/result.txt
+        # Git doesn't track empty directories, so a file is necessary
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add results_folder
+        git commit -m "Add created results folder and file"
+        git push
+      #env:
+       # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # The default GITHUB_TOKEN has permission to push
