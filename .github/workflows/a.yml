@@ -35,10 +35,10 @@ jobs:
           with:
             image-ref: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
             format: json
-            output: "GitHub Actions/Trivy/scan-results-${{ steps.timestamp.outputs.TIMESTAMP }}.txt"
+            output: "GitHub Actions/Trivy/scan-results-.txt"
         - name: Verify scan results exist and commit
           run: |
-            FILE="GitHub Actions/Trivy/scan-results-${{ steps.timestamp.outputs.TIMESTAMP }}.txt"
+            FILE="GitHub Actions/Trivy/scan-results-.txt"
             ls -l "$(dirname "$FILE")" || true
             if [ -f "$FILE" ]; then
             git config --global user.name "GitHub Actions"
