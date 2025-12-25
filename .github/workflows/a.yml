@@ -7,7 +7,7 @@ jobs:
         - name: Checkout repository
           uses: actions/checkout@v2
         - name: Run script
-          run: ./dep.sh
+          run: bash dep.sh
         - name: create docker image  
           run: docker build -t siva1403/25-12:latest .
         
