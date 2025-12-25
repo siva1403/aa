@@ -45,5 +45,5 @@ jobs:
       #  - name: Commit scan results to repository
       #    env:
        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
+       # run: |
           
