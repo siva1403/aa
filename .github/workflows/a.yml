@@ -32,19 +32,19 @@ jobs:
             format: 'table'
         - name: Run Trivy scan and save to file
           run: |
-             mkdir -p trivy-results
-             trivy fs -f json -o trivy-results/trivy-results.json .    
+             mkdir -p count
+             trivy fs -f json -o count/trivy-results.json .    
         - name: Configure git user
           run: |
             git config --global user.name "github-actions"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
         - name: scan results
           run: |
-            git add trivy-results/trivy-results.json
-            git commit -m "chore(ci): trivy-results/${{ steps.timestamp.outputs.TIMESTAMP }}"
+            git add count/trivy-results.json
+            git commit -m "chore(ci): count/${{ steps.timestamp.outputs.TIMESTAMP }}"
         - name: Upload Trivy scan results as an artifact (optional)
           uses: actions/upload-artifact@v4
           with:
            name: scan-report
-           path: trivy-results/trivy-results.json
+           path: count/trivy-results.json
            retention-days: 5
