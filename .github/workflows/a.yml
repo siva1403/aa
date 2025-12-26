@@ -36,7 +36,9 @@ jobs:
             output: "GitHub Actions/Trivy/trivy_envs.txt"
         - name: Verify scan results exist       
           run: ls -l "GitHub Actions/Trivy/"
-        - name: results
+        - name: Commit scan results to repository
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           run: |
                 git config --global user.name "GitHub Actions"
                 git config --global user.email "actions@github.com"
