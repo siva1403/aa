@@ -61,7 +61,7 @@ jobs:
             username: ${{ secrets.EMAIL_USER }}
             password: ${{ secrets.EMAIL_PASS }}
             subject: '[${{ job.status }}] ${{ github.workflow }} #${{ github.run_number }}'
-            to: k.s.krishna1403@gmail.com
+            to: ${{ secrets.EMAIL_USER }}
             from: github-actions@yourorg.com
             body: |
               Workflow status: ${{ job.status }}
