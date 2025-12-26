@@ -33,7 +33,7 @@ jobs:
           run: ls -l "GitHub Actions/Trivy/"
         - name: Run Trivy vulnerability scanner
           run: |
-            OUTPUT_FILE="GitHub Actions/Trivy/sa${DATE}.json"
+            OUTPUT_FILE="GitHub Actions/Trivy/sa$(${{ steps.timestamp.outputs.TIMESTAMP }}).json"
             mkdir -p "GitHub Actions/Trivy"
             trivy image --format json --ignore-unfixed --vuln-type os,library --severity CRITICAL,HIGH,MEDIUM,LOW -o "$OUTPUT_FILE" siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
         - name: Verify scan results exist
