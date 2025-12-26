@@ -52,3 +52,17 @@ jobs:
             git add "GitHub Actions/Trivy/sa${{ steps.timestamp.outputs.TIMESTAMP }}.json"
             git commit -m "Add Trivy scan results (${{ steps.timestamp.outputs.TIMESTAMP }})"
             git push origin HEAD:master
+        - name: Email Notification
+          if: always()
+          uses: dawidd6/action-send-mail@v3
+          with:
+            server_address: smtp.gmail.com
+            server_port: 587
+            username: ${{ secrets.EMAIL_USER }}
+            password: ${{ secrets.EMAIL_PASS }}
+            subject: '[${{ job.status }}] ${{ github.workflow }} #${{ github.run_number }}'
+            to: k.s.krishna1403@gmail.com
+            from: github-actions@yourorg.com
+            body: |
+              Workflow status: ${{ job.status }}
+              Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
