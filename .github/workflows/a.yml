@@ -33,7 +33,7 @@ jobs:
           run: ls -l "GitHub Actions/Trivy/"
         - name: Run Trivy vulnerability scanner
           run: |
-            OUTPUT_FILE="GitHub Actions/Trivy/sa$(${{ steps.timestamp.outputs.TIMESTAMP }}).json"
+            OUTPUT_FILE="GitHub Actions/Trivy/sa${{ steps.timestamp.outputs.TIMESTAMP }}.json"
             mkdir -p "GitHub Actions/Trivy"
             trivy image --format json --ignore-unfixed --vuln-type os,library --severity CRITICAL,HIGH,MEDIUM,LOW -o "$OUTPUT_FILE" siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
         - name: Verify scan results exist
@@ -44,6 +44,6 @@ jobs:
           run: |
             git config --global user.name "GitHub Actions"
             git config --global user.email "actions@github.com"
-            git add "GitHub Actions/Trivy/sa$(${{ steps.timestamp.outputs.TIMESTAMP }}).json"
+            git add "GitHub Actions/Trivy/$(${{ steps.timestamp.outputs.TIMESTAMP }}).json"
             git commit -m "Add Trivy scan results (${{ steps.timestamp.outputs.TIMESTAMP }})"
             git push origin HEAD:master
