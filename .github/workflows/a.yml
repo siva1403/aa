@@ -44,6 +44,6 @@ jobs:
           run: |
             git config --global user.name "GitHub Actions"
             git config --global user.email "actions@github.com"
-            git add "GitHub Actions/Trivy/$(${{ steps.timestamp.outputs.TIMESTAMP }}).json"
+            git add "GitHub Actions/Trivy/sa${{ steps.timestamp.outputs.TIMESTAMP }}.json"
             git commit -m "Add Trivy scan results (${{ steps.timestamp.outputs.TIMESTAMP }})"
             git push origin HEAD:master
