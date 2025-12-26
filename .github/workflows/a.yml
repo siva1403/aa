@@ -11,24 +11,18 @@ jobs:
         steps:
         - name: Checkout repository
           uses: actions/checkout@v2
-        - name: Run script
-          run: bash dep.sh
-        - name: Set timestamp
-          run: echo "TIMESTAMP=$(date +%s)" >> $GITHUB_OUTPUT
+        - name: Generate timestamp
           id: timestamp
+          run: echo "TIMESTAMP=$(date +%s)" >> $GITHUB_OUTPUT
+        - name: Run script
+          run:  bash dep.sh
         - name: Create output directory
-          run: mkdir -p "GitHub Actions/Trivy "
-        - name: Install Trivy
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y curl
-            curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin v0.57.0
+          run: mkdir -p "GitHub Actions/abc "
         - name: Log in to Docker Hub
           uses: docker/login-action@v3
           with:
             username: ${{ secrets.DOCKER_HUB_USERNAME }}
             password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
         - name: Build and push Docker image
           uses: docker/build-push-action@v5
           with:
@@ -36,20 +30,20 @@ jobs:
             push: true
             tags: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest       
         - name: Verify scan results exist       
-          run: ls -l "GitHub Actions/Trivy/"
+          run: ls -l "GitHub Actions/abc/"
         - name: Run Trivy vulnerability scanner
           run: |
-            OUTPUT_FILE="GitHub Actions/Trivy/sa${DATE}.json"
-            mkdir -p "GitHub Actions/Trivy"
+            OUTPUT_FILE="GitHub Actions/abcTrivy/sa${DATE}.json"
+            mkdir -p "GitHub Actions/abc"
             trivy image --format json --ignore-unfixed --vuln-type os,library --severity CRITICAL,HIGH,MEDIUM,LOW -o "$OUTPUT_FILE" siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
         - name: Verify scan results exist
-          run: ls -l "GitHub Actions/Trivy/"
+          run: ls -l "GitHub Actions/abc/"
         - name: Commit scan results to repository
           env:
             GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
           run: |
             git config --global user.name "GitHub Actions"
             git config --global user.email "actions@github.com"
-            git add "GitHub Actions/Trivy/sa$(DATE).json"
+            git add "GitHub Actions/Trivy/abc$(${{ steps.timestamp.outputs.TIMESTAMP }}).json"
             git commit -m "Add Trivy scan results (${{ steps.timestamp.outputs.TIMESTAMP }})"
             git push origin HEAD:master
