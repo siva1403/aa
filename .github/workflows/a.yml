@@ -33,13 +33,13 @@ jobs:
           with:
             image-ref: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
             format: 'table & json'
-            output: "GitHub Actions/Trivy/scan-results-.txt"
+            output: "GitHub Actions/Trivy/scan-results-.json"
         - name: Verify scan results exist       
           run: ls -l "GitHub Actions/Trivy/"
         - name: results
           run: |
                 git config --global user.name "GitHub Actions"
                 git config --global user.email "actions@github.com"
-                git add "GitHub Actions/Trivy/scan-results-.txt"
+                git add "GitHub Actions/Trivy/scan-results-.json"
                 git commit -m "Add Trivy scan results (${{ steps.timestamp.outputs.TIMESTAMP }})" || echo "No changes to commit"
                 git push origin HEAD:master 
