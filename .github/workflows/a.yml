@@ -11,7 +11,7 @@ jobs:
         steps:
         - name: Checkout repository
           uses: actions/checkout@v2
-        - name: Generate timestamp
+        - $name: Generate timestamp
           id: timestamp
           run: echo "TIMESTAMP=$(date +%s)" >> $GITHUB_OUTPUT
         - name: Run script
