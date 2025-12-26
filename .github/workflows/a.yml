@@ -42,7 +42,7 @@ jobs:
             trivy image --format json --ignore-unfixed --vuln-type os,library --severity CRITICAL,HIGH,MEDIUM,LOW -o "$OUTPUT_FILE" siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
         - name: Verify scan results exist
           run: ls -l "GitHub Actions/Trivy/"
-        - name: Commit scan results to repository
+        - name: Commits scan results to repository
           env:
             GITHUBTOKEN: ${{ secrets.GITHUBTOKEN }}
           run: |
