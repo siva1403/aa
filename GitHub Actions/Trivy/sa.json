@@ -1,7 +1,7 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-12-26T13:08:01.284848387Z",
-  "ArtifactName": "siva1403/1766754432:latest",
+  "CreatedAt": "2025-12-26T13:19:58.721708761Z",
+  "ArtifactName": "siva1403/1766755099:latest",
   "ArtifactType": "container_image",
   "Metadata": {
     "OS": {
@@ -9,25 +9,25 @@
       "Name": "10.10",
       "EOSL": true
     },
-    "ImageID": "sha256:09d9d4498f5a384dd6b24039435a4d54b9bfd6e9c4791a80d6983b5663b31246",
+    "ImageID": "sha256:10085feff20a3c2221f5bbad849af4458210b3a6c776c3af8023ae96aed1b7ae",
     "DiffIDs": [
       "sha256:764055ebc9a7a290b64d17cf9ea550f1099c202d83795aa967428ebdf335c9f7",
       "sha256:aa7d6f60014a5c107ddb0815bb53ee83b412ff05bf81c4b015045e76041051a7",
       "sha256:2fd6f7b9077a61f656fb522cb033326ac79ca1ba2b8e90215e1fedb00976bfc1",
       "sha256:24d477f8e4dc542ef60964256ed4b2f93ec51029e9b900376fdee3b981cf114a",
-      "sha256:f2fbffc78c62dcba66baedcb5261a6b2c1e926d258082fbfe84c3968cacf830a",
-      "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+      "sha256:726aa3f4a24493a5398a12462b2f42f4830fdb3d39ce34b09e6f9258260014bc",
+      "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
     ],
     "RepoTags": [
       "my-java-app:latest",
-      "siva1403/1766754432:latest"
+      "siva1403/1766755099:latest"
     ],
     "RepoDigests": [
-      "siva1403/1766754432@sha256:57e1aa8b29011e3229291381c36a789f4424b50e27abf41ec85c82d23112739f"
+      "siva1403/1766755099@sha256:443a21039fe45ce338cdc1589af1112f6035057a0edd1daf8269c34b59e8423a"
     ],
     "ImageConfig": {
       "architecture": "amd64",
-      "created": "2025-12-26T13:07:11.385404122Z",
+      "created": "2025-12-26T13:19:23.73459669Z",
       "history": [
         {
           "created": "2021-06-23T00:20:40Z",
@@ -71,23 +71,23 @@
           "created_by": "/bin/sh -c set -eux; \t\tarch=\"$(dpkg --print-architecture)\"; \tcase \"$arch\" in \t\t'amd64') \t\t\tdownloadUrl='https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.11%2B9/OpenJDK11U-jre_x64_linux_11.0.11_9.tar.gz'; \t\t\t;; \t\t'arm64') \t\t\tdownloadUrl='https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.11%2B9/OpenJDK11U-jre_aarch64_linux_11.0.11_9.tar.gz'; \t\t\t;; \t\t*) echo \u003e\u00262 \"error: unsupported architecture: '$arch'\"; exit 1 ;; \tesac; \t\tsavedAptMark=\"$(apt-mark showmanual)\"; \tapt-get update; \tapt-get install -y --no-install-recommends \t\tdirmngr \t\tgnupg \t\twget \t; \trm -rf /var/lib/apt/lists/*; \t\twget --progress=dot:giga -O openjdk.tgz \"$downloadUrl\"; \twget --progress=dot:giga -O openjdk.tgz.asc \"$downloadUrl.sign\"; \t\texport GNUPGHOME=\"$(mktemp -d)\"; \tgpg --batch --keyserver keyserver.ubuntu.com --recv-keys EAC843EBD3EFDB98CC772FADA5CD6035332FA671; \tgpg --batch --keyserver keyserver.ubuntu.com --keyserver-options no-self-sigs-only --recv-keys CA5F11C6CE22644D42C6AC4492EF8D39DC13168F; \tgpg --batch --list-sigs --keyid-format 0xLONG CA5F11C6CE22644D42C6AC4492EF8D39DC13168F \t\t| tee /dev/stderr \t\t| grep '0xA5CD6035332FA671' \t\t| grep 'Andrew Haley'; \tgpg --batch --verify openjdk.tgz.asc openjdk.tgz; \tgpgconf --kill all; \trm -rf \"$GNUPGHOME\"; \t\tmkdir -p \"$JAVA_HOME\"; \ttar --extract \t\t--file openjdk.tgz \t\t--directory \"$JAVA_HOME\" \t\t--strip-components 1 \t\t--no-same-owner \t; \trm openjdk.tgz*; \t\tapt-mark auto '.*' \u003e /dev/null; \t[ -z \"$savedAptMark\" ] || apt-mark manual $savedAptMark \u003e /dev/null; \tapt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \t\t{ \t\techo '#!/usr/bin/env bash'; \t\techo 'set -Eeuo pipefail'; \t\techo 'trust extract --overwrite --format=java-cacerts --filter=ca-anchors --purpose=server-auth \"$JAVA_HOME/lib/security/cacerts\"'; \t} \u003e /etc/ca-certificates/update.d/docker-openjdk; \tchmod +x /etc/ca-certificates/update.d/docker-openjdk; \t/etc/ca-certificates/update.d/docker-openjdk; \t\tfind \"$JAVA_HOME/lib\" -name '*.so' -exec dirname '{}' ';' | sort -u \u003e /etc/ld.so.conf.d/docker-openjdk.conf; \tldconfig; \t\tjava -Xshare:dump; \t\tjava --version"
         },
         {
-          "created": "2025-12-26T13:07:11Z",
+          "created": "2025-12-26T13:19:23Z",
           "created_by": "WORKDIR /app",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2025-12-26T13:07:11Z",
+          "created": "2025-12-26T13:19:23Z",
           "created_by": "COPY /target/NotherSecurity-1.0.0.jar /app/NotherSecurity-1.0.0.jar # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2025-12-26T13:07:11Z",
+          "created": "2025-12-26T13:19:23Z",
           "created_by": "EXPOSE map[8084/tcp:{}]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2025-12-26T13:07:11Z",
+          "created": "2025-12-26T13:19:23Z",
           "created_by": "CMD [\"java -jar /app/NotherSecurity-1.0.0.jar\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
@@ -101,8 +101,8 @@
           "sha256:aa7d6f60014a5c107ddb0815bb53ee83b412ff05bf81c4b015045e76041051a7",
           "sha256:2fd6f7b9077a61f656fb522cb033326ac79ca1ba2b8e90215e1fedb00976bfc1",
           "sha256:24d477f8e4dc542ef60964256ed4b2f93ec51029e9b900376fdee3b981cf114a",
-          "sha256:f2fbffc78c62dcba66baedcb5261a6b2c1e926d258082fbfe84c3968cacf830a",
-          "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+          "sha256:726aa3f4a24493a5398a12462b2f42f4830fdb3d39ce34b09e6f9258260014bc",
+          "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
         ]
       },
       "config": {
@@ -122,7 +122,7 @@
   },
   "Results": [
     {
-      "Target": "siva1403/1766754432:latest (debian 10.10)",
+      "Target": "siva1403/1766755099:latest (debian 10.10)",
       "Class": "os-pkgs",
       "Type": "debian",
       "Vulnerabilities": [
@@ -10542,7 +10542,7 @@
           "FixedVersion": "1.3.12, 1.4.12, 1.2.13",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-6378",
@@ -10608,7 +10608,7 @@
           "FixedVersion": "1.3.12, 1.4.12, 1.2.13",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-6378",
@@ -10674,7 +10674,7 @@
           "FixedVersion": "1.5.13, 1.3.15",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-12798",
@@ -10723,7 +10723,7 @@
           "FixedVersion": "1.5.19, 1.3.16",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-11226",
@@ -10774,7 +10774,7 @@
           "FixedVersion": "1.5.13, 1.3.15",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-12801",
@@ -10823,7 +10823,7 @@
           "FixedVersion": "2.15.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-52999",
@@ -10883,7 +10883,7 @@
           "FixedVersion": "2.12.7.1, 2.13.4.2",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-42003",
@@ -10957,7 +10957,7 @@
           "FixedVersion": "2.12.7.1, 2.13.4",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-42004",
@@ -11025,7 +11025,7 @@
           "FixedVersion": "9.37.2",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-52428",
@@ -11084,7 +11084,7 @@
           "FixedVersion": "10.0.2, 9.37.4",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-53864",
@@ -11139,7 +11139,7 @@
           "FixedVersion": "2.4.9",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-1370",
@@ -11206,7 +11206,7 @@
           "FixedVersion": "2.4.9",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-1370",
@@ -11273,7 +11273,7 @@
           "FixedVersion": "11.0.3, 10.1.35, 9.0.99",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-24813",
@@ -11369,7 +11369,7 @@
           "FixedVersion": "8.5.83, 9.0.68, 10.0.27, 10.1.1",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-42252",
@@ -11444,7 +11444,7 @@
           "FixedVersion": "8.5.84, 9.0.69, 10.1.2",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-45143",
@@ -11516,7 +11516,7 @@
           "FixedVersion": "10.1.5, 11.0.0-M5, 8.5.88, 9.0.71",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-24998",
@@ -11603,7 +11603,7 @@
           "FixedVersion": "11.0.0-M11, 10.1.16, 9.0.83, 8.5.96",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-46589",
@@ -11698,7 +11698,7 @@
           "FixedVersion": "11.0.0-M21, 10.1.25, 9.0.90",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-34750",
@@ -11779,7 +11779,7 @@
           "FixedVersion": "11.0.2, 10.1.34, 9.0.98",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-50379",
@@ -11871,7 +11871,7 @@
           "FixedVersion": "11.0.2, 10.1.34, 9.0.98",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-56337",
@@ -11947,7 +11947,7 @@
           "FixedVersion": "11.0.8, 10.1.42, 9.0.106",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-48988",
@@ -12046,7 +12046,7 @@
           "FixedVersion": "11.0.10, 10.1.44, 9.0.108",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-48989",
@@ -12145,7 +12145,7 @@
           "FixedVersion": "11.0.11, 10.1.45, 9.0.109",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-55752",
@@ -12225,7 +12225,7 @@
           "FixedVersion": "8.5.93, 9.0.80, 10.1.13, 11.0.0-M11",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-41080",
@@ -12310,7 +12310,7 @@
           "FixedVersion": "11.0.0-M12, 10.1.14, 9.0.81, 8.5.94",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-42795",
@@ -12396,7 +12396,7 @@
           "FixedVersion": "11.0.0-M12, 10.1.14, 9.0.81, 8.5.94",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-44487",
@@ -12738,7 +12738,7 @@
           "FixedVersion": "11.0.0-M12, 10.1.14, 9.0.81, 8.5.94",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-45648",
@@ -12824,7 +12824,7 @@
           "FixedVersion": "8.5.99, 9.0.86, 10.1.19, 11.0.0-M17",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-24549",
@@ -12911,7 +12911,7 @@
           "FixedVersion": "11.0.8, 10.1.42, 9.0.106",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-49124",
@@ -12964,7 +12964,7 @@
           "FixedVersion": "11.0.8, 10.1.42, 9.0.106",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-49125",
@@ -13059,7 +13059,7 @@
           "FixedVersion": "9.0.105, 10.1.41, 11.0.7",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-46701",
@@ -13132,7 +13132,7 @@
           "FixedVersion": "11.0.11, 10.1.45, 9.0.109",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-55754",
@@ -13195,7 +13195,7 @@
           "FixedVersion": "11.0.12, 10.1.47, 9.0.110",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-61795",
@@ -13272,7 +13272,7 @@
           "FixedVersion": "11.0.0-M17, 10.1.19, 9.0.86, 8.5.99",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-23672",
@@ -13361,7 +13361,7 @@
           "FixedVersion": "3.3.11, 3.4.5",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-22235",
@@ -13415,7 +13415,7 @@
           "FixedVersion": "3.0.7, 2.7.12, 2.6.15, 2.5.15",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-20883",
@@ -13478,7 +13478,7 @@
           "FixedVersion": "5.6.12, 5.7.10, 5.8.5, 6.0.5, 6.1.2",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-34034",
@@ -13537,7 +13537,7 @@
           "FixedVersion": "5.7.5, 5.6.9",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-31692",
@@ -13596,7 +13596,7 @@
           "FixedVersion": "5.7.12, 5.8.11, 6.1.8, 6.2.3",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-22257",
@@ -13650,7 +13650,7 @@
           "FixedVersion": "5.7.8, 5.8.3, 6.0.3",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-20862",
@@ -13708,7 +13708,7 @@
           "FixedVersion": "5.7.14, 5.8.16, 6.0.14, 6.1.12, 6.2.8, 6.3.5",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38827",
@@ -13764,7 +13764,7 @@
           "FixedVersion": "6.3.8, 6.4.4, 6.2.10, 6.1.14, 6.0.16, 5.8.18, 5.7.16",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-22228",
@@ -13818,7 +13818,7 @@
           "FixedVersion": "5.7.5, 5.6.9",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-31690",
@@ -13874,7 +13874,7 @@
           "FixedVersion": "5.7.13, 5.8.15, 6.2.7, 6.0.13, 6.1.11, 6.3.4",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38821",
@@ -13929,7 +13929,7 @@
           "FixedVersion": "6.1.14",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38820",
@@ -13982,7 +13982,7 @@
           "FixedVersion": "6.2.7, 6.1.20",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-22233",
@@ -14030,7 +14030,7 @@
           "FixedVersion": "6.2.11",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-41249",
@@ -14084,7 +14084,7 @@
           "FixedVersion": "6.0.8, 5.3.27, 5.2.24.RELEASE",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-20863",
@@ -14146,7 +14146,7 @@
           "FixedVersion": "6.0.7, 5.3.26, 5.2.23.RELEASE",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-20861",
@@ -14208,7 +14208,7 @@
           "FixedVersion": "5.3.39",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38808",
@@ -14263,7 +14263,7 @@
           "FixedVersion": "6.0.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2016-1000027",
@@ -14339,7 +14339,7 @@
           "FixedVersion": "6.1.4, 6.0.17, 5.3.32",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-22243",
@@ -14394,7 +14394,7 @@
           "FixedVersion": "6.1.5, 6.0.18, 5.3.33",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-22259",
@@ -14450,7 +14450,7 @@
           "FixedVersion": "5.3.34, 6.0.19, 6.1.6",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-22262",
@@ -14505,7 +14505,7 @@
           "FixedVersion": "5.3.38, 6.0.23, 6.1.12",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38809",
@@ -14562,7 +14562,7 @@
           "FixedVersion": "6.1.14",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38820",
@@ -14615,7 +14615,7 @@
           "FixedVersion": "6.0.7, 5.3.26",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-20860",
@@ -14672,7 +14672,7 @@
           "FixedVersion": "6.1.13",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38816",
@@ -14726,7 +14726,7 @@
           "FixedVersion": "6.1.14",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38819",
@@ -14782,7 +14782,7 @@
           "FixedVersion": "5.3.42",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-38828",
@@ -14835,7 +14835,7 @@
           "FixedVersion": "6.2.10",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-41242",
@@ -14888,7 +14888,7 @@
           "FixedVersion": "2.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-1471",
@@ -14974,7 +14974,7 @@
           "FixedVersion": "1.31",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-25857",
@@ -15050,7 +15050,7 @@
           "FixedVersion": "1.31",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-38749",
@@ -15115,7 +15115,7 @@
           "FixedVersion": "1.31",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-38750",
@@ -15180,7 +15180,7 @@
           "FixedVersion": "1.31",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-38751",
@@ -15246,7 +15246,7 @@
           "FixedVersion": "1.32",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-38752",
@@ -15308,7 +15308,7 @@
           "FixedVersion": "1.32",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:f83487433c33d07e0c2da067645ecec032d79c0d3b8af9e774ab4c2704cae951"
+            "DiffID": "sha256:775e47bf5503702808d3c8ccbd3106b330c92304f21021f37b4a6eba936564d0"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-41854",
