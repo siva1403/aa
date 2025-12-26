@@ -32,12 +32,7 @@ jobs:
           uses: aquasecurity/trivy-action@master
           with:
             image-ref: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
-            format: 'table'
-        - name: Scan Docker image for vulnerabilities (JSON)
-          uses: aquasecurity/trivy-action@master
-          with:
-            image-ref: siva1403/${{ steps.timestamp.outputs.TIMESTAMP }}:latest
-            format: json
+            format: 'table & json'
             output: "GitHub Actions/Trivy/scan-results-.txt"
         - name: Verify scan results exist and commit
           run: |
