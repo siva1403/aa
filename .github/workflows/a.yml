@@ -37,6 +37,8 @@ jobs:
             tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ steps.timestamp.outputs.TIMESTAMP }}:latest       
         - name: Verify scan results exist       
           run: ls -l "GitHub Actions/Trivy/"
+        - name: Install Trivy
+          uses: aquasecurity/setup-trivy@v0.2.2
         - name: Run Trivy vulnerability scanner
           run: |
             OUTPUT_FILE="GitHub Actions/Trivy/sa${{ steps.timestamp.outputs.TIMESTAMP }}.json"
