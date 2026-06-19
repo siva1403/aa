@@ -18,6 +18,8 @@ jobs:
           run:  bash dep.sh
         - name: Create output directory
           run: mkdir -p "GitHub Actions/Trivy "
+        - name: Run Trivy
+          uses: aquasecurity/trivy-action@0.28.0
         - name: Move JAR to repo root
           run: |
            mkdir -p "GitHub Actions/artifacts " 
