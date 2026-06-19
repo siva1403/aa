@@ -1,4 +1,4 @@
-name: Build Docker image, scan and push to Docker Hub
+name: Build Docker image and push to Docker Hub
 
 on:
   push:
@@ -17,15 +17,15 @@ jobs:
         id: timestamp
         run: echo "TIMESTAMP=$(date +%s)" >> $GITHUB_OUTPUT
 
-      - name: Build JAR (if Maven project)
+      - name: Build project (if needed)
         run: bash dep.sh
 
-      - name: Create artifact folders
+      - name: Create folders
         run: |
           mkdir -p "GitHub Actions/Trivy"
           mkdir -p "GitHub Actions/artifacts"
 
-      - name: Move JAR to artifacts
+      - name: Copy JAR
         run: |
           cp target/*.jar "GitHub Actions/artifacts/app-${{ steps.timestamp.outputs.TIMESTAMP }}.jar"
 
@@ -36,54 +36,35 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      # ---------------- BUILD & PUSH IMAGE ----------------
+      # ---------------- BUILD IMAGE (TIMESTAMP TAG) ----------------
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nothersecurity:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nothersecurity:${{ steps.timestamp.outputs.TIMESTAMP }}
 
       # ---------------- TRIVY SCAN ----------------
-      - name: Run Trivy vulnerability scanner
+      - name: Run Trivy scan
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ secrets.DOCKER_HUB_USERNAME }}/nothersecurity:latest
+          image-ref: ${{ secrets.DOCKER_HUB_USERNAME }}/nothersecurity:${{ steps.timestamp.outputs.TIMESTAMP }}
           format: json
-          output: GitHub Actions/Trivy/report-${{ steps.timestamp.outputs.TIMESTAMP }}.json
+          output: GitHub Actions/Trivy/scan-${{ steps.timestamp.outputs.TIMESTAMP }}.json
           ignore-unfixed: true
           vuln-type: os,library
           severity: CRITICAL,HIGH,MEDIUM,LOW
 
-      # ---------------- VERIFY RESULTS ----------------
-      - name: Verify scan results exist
+      # ---------------- VERIFY ----------------
+      - name: Verify scan output
         run: ls -l "GitHub Actions/Trivy/"
 
       # ---------------- COMMIT RESULTS ----------------
-      - name: Commit scan results
+      - name: Commit results
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-          git add "GitHub Actions/artifacts/"
-          git add "GitHub Actions/Trivy/"
-
-          git commit -m "Add build artifacts and Trivy scan results" || echo "No changes to commit"
+          git add "GitHub Actions/"
+          git commit -m "CI build + Trivy scan ${{ steps.timestamp.outputs.TIMESTAMP }}" || echo "No changes"
           git push origin master
-
-      # ---------------- EMAIL ----------------
-      - name: Email Notification
-        if: always()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          username: ${{ secrets.EMAIL_USER }}
-          password: ${{ secrets.EMAIL_PASS }}
-          subject: "[${{ job.status }}] Docker CI Pipeline"
-          to: ${{ secrets.EMAIL_USER }}
-          from: github-actions@yourorg.com
-          body: |
-            Workflow: ${{ github.workflow }}
-            Status: ${{ job.status }}
-            Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
