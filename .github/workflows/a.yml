@@ -48,7 +48,7 @@ jobs:
       - name: Run Trivy scan
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: ${{ secrets.DOCKER_HUB_USERNAME }}/a:${{ steps.timestamp.outputs.TIMESTAMP }}
+          image-ref: ${{ secrets.DOCKER_HUB_USERNAME }}/a:latest
           format: json
           output: GitHub Actions/Trivy/scan-${{ steps.timestamp.outputs.TIMESTAMP }}.json
           ignore-unfixed: true
