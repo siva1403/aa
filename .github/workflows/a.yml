@@ -42,7 +42,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/a:${{ steps.timestamp.outputs.TIMESTAMP }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/a:latest
 
       # ---------------- TRIVY SCAN ----------------
       - name: Run Trivy scan
